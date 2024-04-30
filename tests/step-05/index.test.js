@@ -40,6 +40,7 @@ test('Parse SQL Query with WHERE Clause', () => {
     });
 });
 
+
 test('Execute SQL Query with WHERE Clause', async () => {
     const query = 'SELECT id, name FROM sample WHERE age = 25';
     const result = await executeSELECTQuery(query);
@@ -47,4 +48,10 @@ test('Execute SQL Query with WHERE Clause', async () => {
     expect(result[0]).toHaveProperty('id');
     expect(result[0]).toHaveProperty('name');
     expect(result[0].id).toBe('2');
+});
+
+test('Execute SQL Query with WHERE Clause - Case Sensitivity in Field Names', async () => {
+    const query = 'SELECT id, name FROM sample WHERE Age = 25'; // Note the uppercase 'Age'
+    const result = await executeSELECTQuery(query);
+    expect(result).toEqual([]); // Expecting no matching records if case-sensitive
 });
