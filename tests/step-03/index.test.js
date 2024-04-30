@@ -15,7 +15,8 @@ test('Parse SQL Query', () => {
     const parsed = parseQuery(query);
     expect(parsed).toEqual({
         fields: ['id', 'name'],
-        table: 'sample'
+        table: 'sample',
+        "whereClause": null
     });
 });
 
@@ -24,6 +25,7 @@ test('Parse SQL Query', () => {
     const parsed = parseQuery(query);
     expect(parsed).toEqual({
         fields: ['id', 'name', 'age'],
-        table: 'sample'
+        table: 'sample',
+        "whereClause": null
     });
 });
